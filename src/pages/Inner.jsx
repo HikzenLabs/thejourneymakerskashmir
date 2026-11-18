@@ -4,9 +4,10 @@ import {
   photos, inr, contacts, team, waLink, telLink, track,
 } from '../data'
 import RouteMap from '../RouteMap'
+import Slideshow from '../Slideshow'
 import { WA } from '../Contact'
 import { TripForm, EventForm } from '../Forms'
-import { Page, PackageCards, Disclaimer, Extras, DestinationList, Img, Socials, initials } from '../components'
+import { Page, PackageCards, Disclaimer, Extras, DestinationList, Img, Socials, initials, TechPartner } from '../components'
 import '../styles/pages.css'
 
 // Small stroke icons, 24px grid.
@@ -138,6 +139,26 @@ export function Destination() {
           <Link className="quiet" to="/plan-my-trip">Or fill the trip form</Link>
         </aside>
       </section>
+      {d.gallery && (
+        <section className="wrap">
+          <div className="intro"><h2>{d.name} in pictures</h2></div>
+          <Slideshow slides={d.gallery} label={`Photos of ${d.name}`} />
+        </section>
+      )}
+      {d.story && (
+        <section className="story-band">
+          <div className="wrap story">
+            <div>
+              <h2>{d.story.title}</h2>
+              {d.story.paras.map((p) => <p key={p} className="lead">{p}</p>)}
+            </div>
+            <div>
+              <h3>{d.story.sub}</h3>
+              {d.story.subParas.map((p) => <p key={p}>{p}</p>)}
+            </div>
+          </div>
+        </section>
+      )}
       {!d.offbeat && (
         <section className="wrap">
           <div className="intro"><h2>Packages that include {d.name}</h2></div>
@@ -233,15 +254,62 @@ export function About() {
   return (
     <Page title="About">
       <PageHead title="About TJM Kashmir" lead={`${site.tagline}.`} />
+
       <section className="wrap split center">
         <div className="prose">
-          {/* TODO: client's About story */}
-          <p className="lead big">The Journey Makers Kashmir is a Kashmir-based team planning tours across the valley and managing events of every size.</p>
-          <p>We start every trip in Srinagar, handle the hotels, taxis and meals, and stay on call until you're home.</p>
-          <p className="signoff">{site.signoff}</p>
+          <span className="about-num" aria-hidden="true">01</span>
+          <h2>Who we are</h2>
+          <p className="lead big">The Journey Makers Kashmir, popularly known as TJM KASHMIR, is a registered tour and travel company with the Department of Tourism, Jammu &amp; Kashmir.</p>
+          <p>It operates as a tourism unit of Window of Kashmir, a community-based digital platform originating from Uri.</p>
+          <p>We are committed to making travel across Jammu &amp; Kashmir accessible, affordable and memorable through professionally curated travel experiences and personalised services.</p>
+          <p className="registered"><Icon name="check" />Registered with the Department of Tourism, J&amp;K</p>
         </div>
-        <Img src={photos.about} alt="A Kashmir valley" />
+        <figure className="about-photo">
+          <Img src={photos.about} alt="The TJM Kashmir team with their Welcome to Kashmir banner" />
+          <figcaption>The TJM Kashmir team</figcaption>
+        </figure>
       </section>
+
+      <section className="about-band">
+        <div className="wrap">
+          <div className="intro">
+            <span className="about-num" aria-hidden="true">02</span>
+            <h2>What we do</h2>
+            <p className="lead">Comprehensive travel and event management solutions under one roof.</p>
+          </div>
+          <div className="about-cols">
+            <div className="about-card">
+              <h3>Tours &amp; travel</h3>
+              <Checklist items={['Customised tour packages across Jammu & Kashmir', 'Flight and transportation bookings', 'Hotel, hostel and homestay accommodation', 'Destination planning and local travel assistance', 'Group tours and customised itineraries']} />
+              <Link className="quiet" to="/packages">See tour packages</Link>
+            </div>
+            <div className="about-card">
+              <h3>Event management</h3>
+              <Checklist items={['Wedding and celebration management', 'Sports events and tournaments', 'School and college events', 'Conferences, corporate gatherings and special occasions']} />
+              <Link className="quiet" to="/events">See event services</Link>
+            </div>
+          </div>
+          <p className="about-note">Whether you are planning a family holiday, an adventurous getaway or a special event, we take care of the details so you can enjoy the experience.</p>
+        </div>
+      </section>
+
+      <section className="wrap split">
+        <div className="prose">
+          <span className="about-num" aria-hidden="true">03</span>
+          <h2>Our mission</h2>
+          <p className="lead">Our vision extends beyond tourism.</p>
+          <p>We aspire to contribute to the growth of Jammu &amp; Kashmir's tourism sector by promoting unexplored destinations, encouraging responsible tourism, prioritising tourist safety and creating meaningful employment opportunities for local youth.</p>
+          <p>By collaborating with local communities, service providers and tourism stakeholders, we aim to ensure that the benefits of tourism reach the people and regions that make Kashmir special.</p>
+        </div>
+        <div className="prose">
+          <span className="about-num" aria-hidden="true">04</span>
+          <h2>Our promise</h2>
+          <p className="lead">At TJM KASHMIR, every traveller matters.</p>
+          <p>We believe that exceptional travel experiences should not come with an unreasonable price tag. Our commitment is to deliver:</p>
+          <Checklist items={['Affordable and transparent travel solutions', 'Customised packages tailored to individual preferences', 'Reliable assistance and responsible travel planning', 'Memorable experiences rooted in local culture and hospitality']} />
+        </div>
+      </section>
+
       <section className="wrap">
         <div className="intro">
           <h2>Meet the team</h2>
@@ -251,13 +319,14 @@ export function About() {
           {team.map((m) => (
             <article key={m.name} className="member">
               <div className="member-photo">
-                {m.photo
-                  ? <img src={m.photo} alt={m.name} loading="lazy" />
-                  : <span aria-hidden="true">{initials(m.name)}</span>}
+                <span aria-hidden="true">{initials(m.name)}</span>
+                {/* Photo sits over the initials; if the file is missing it hides and the initials show. */}
+                {m.photo && <img src={m.photo} alt={m.name} loading="lazy" onError={(e) => { e.currentTarget.hidden = true }} />}
               </div>
               <div className="member-body">
                 <h3>{m.name}</h3>
                 <p className="role">{m.role}</p>
+                <p className="">{m.tag}</p>
                 {m.phone ? (
                   <>
                     <p className="num">{m.phone}</p>
@@ -272,6 +341,17 @@ export function About() {
             </article>
           ))}
         </div>
+      </section>
+      <section className="wrap about-close">
+        <h2>Discover Kashmir with us.</h2>
+        <p className="lead">Let us make your journey memorable.</p>
+        <div className="actions">
+          <WA text="Hi TJM Kashmir, I'd like to plan a Kashmir trip." label="about" />
+          <Link className="quiet" to="/plan-my-trip">Plan my trip</Link>
+        </div>
+      </section>
+      <section className="wrap partner-wrap">
+        <TechPartner />
       </section>
     </Page>
   )
@@ -310,6 +390,9 @@ export function Contact() {
           <Link className="quiet" to="/plan-my-trip">Plan my trip</Link>
           <Link className="quiet" to="/plan-my-event">Plan my event</Link>
         </div>
+      </section>
+      <section className="wrap partner-wrap">
+        <TechPartner />
       </section>
     </Page>
   )

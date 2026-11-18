@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { site, packages, extras, nights, inr, contacts, socials, telLink, track } from './data'
+import { site, packages, extras, nights, inr, contacts, socials, techPartner, waLink, telLink, track } from './data'
 import { WA } from './Contact'
 import './styles/components.css'
 
@@ -31,7 +31,28 @@ export const Socials = ({ className = '' }) => (
   </ul>
 )
 
-export const initials = (name) => name.split(/\s+/).map((w) => w[0]).join('').slice(0, 2).toUpperCase()
+// HikzenLabs technology-partner card. `dark` is the compact navy footer version.
+export const TechPartner = ({ dark = false }) => (
+  <aside className={'partner' + (dark ? ' dark' : '')} aria-label="Technology partner">
+    <img src={techPartner.logo} alt="" width="56" height="56" loading="lazy" />
+    <div className="partner-text">
+      <span>Technology partner</span>
+      <strong>{techPartner.name}</strong>
+      <p className="partner-pitch">
+        {dark
+          ? 'Want a website like this? Talk to HikzenLabs.'
+          : 'Designed and built by HikzenLabs. Need a website or a technical solution? We can help.'}
+      </p>
+    </div>
+    <div className="partner-actions">
+      <a className="partner-link" href={techPartner.url} target="_blank" rel="noreferrer">See now</a>
+      <a className="partner-link wa" href={waLink(`Hi ${techPartner.name}, I found you on the TJM Kashmir website.`, techPartner.whatsapp)}
+        target="_blank" rel="noreferrer" onClick={() => track('partner_whatsapp_click', techPartner.name)}>Contact now</a>
+    </div>
+  </aside>
+)
+
+export const initials =(name) => name.split(/\s+/).map((w) => w[0]).join('').slice(0, 2).toUpperCase()
 
 export const Img =({ src, alt, className = '' }) => (
   <div className={'photo ' + className}><img src={src} alt={alt} loading="lazy" /></div>

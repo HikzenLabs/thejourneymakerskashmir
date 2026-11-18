@@ -1,0 +1,45 @@
+/* ---------- Photo slideshow: crossfade + slow zoom ---------- */
+.slideshow { display: grid; gap: var(--s-4); }
+.slides {
+  position: relative; overflow: hidden; border-radius: var(--r-lg);
+  aspect-ratio: 4 / 5; background: var(--navy-800); box-shadow: var(--shadow-lg);
+}
+.slide { position: absolute; inset: 0; margin: 0; opacity: 0; transition: opacity 1.2s var(--ease); }
+.slide.on { opacity: 1; z-index: 1; }
+.slide img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.12); transition: transform 6s ease-out; }
+.slide.on img { transform: scale(1); }
+.slides::after { /* scrim so the caption stays readable */
+  content: ''; position: absolute; inset: auto 0 0; height: 40%; z-index: 2; pointer-events: none;
+  background: linear-gradient(to top, rgba(5, 19, 34, 0.75), rgba(5, 19, 34, 0));
+}
+.slide-cap {
+  position: absolute; left: var(--s-5); right: var(--s-5); bottom: var(--s-4); z-index: 3; margin: 0;
+  color: #fff; font-size: var(--fs-sm); font-weight: 500; text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+}
+
+.slide-nav { display: flex; align-items: center; justify-content: center; gap: var(--s-4); }
+.slide-btn {
+  display: grid; place-items: center; width: 44px; height: 44px; padding: 0; cursor: pointer;
+  border-radius: 50%; border: 1px solid var(--line-strong); background: #fff; color: var(--navy-800);
+  transition: background var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease);
+}
+.slide-btn:hover { background: var(--sand-100); border-color: var(--navy-800); }
+.slide-btn svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+.slide-dots { display: flex; gap: var(--s-2); }
+.slide-dots button {
+  position: relative; overflow: hidden; width: 28px; height: 6px; padding: 0; border: 0; cursor: pointer;
+  border-radius: var(--r-pill); background: var(--sand-200); transition: width var(--t) var(--ease), background var(--t) var(--ease);
+}
+.slide-dots button.on { width: 48px; background: var(--lake-200); }
+.slide-dots button span { /* progress fill for the current slide */
+  position: absolute; inset: 0; background: var(--saffron-500); transform-origin: left; animation: slide-progress linear forwards;
+}
+@keyframes slide-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+@media (min-width: 720px) { .slides { aspect-ratio: 16 / 10; } }
+@media (prefers-reduced-motion: reduce) {
+  .slide, .slide img { transition: none; }
+  .slide img, .slide.on img { transform: none; }
+  .slide-dots button span { display: none; }
+}

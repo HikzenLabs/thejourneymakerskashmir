@@ -2,20 +2,28 @@
 
 // Every WhatsApp / Call button asks the visitor which of these to contact.
 export const contacts = [
-  { name: 'Syed Shafayat', phone: '+91 70420 97572' },
+  { name: 'Syed Shafayat', phone: '+91 9103203 359' },
   { name: 'Ahil', phone: '+91 88990 02449' },
 ]
 
 export const site = {
   name: 'The Journey Makers Kashmir',
   short: 'TJM Kashmir',
-  tagline: 'Your Journey, Our Responsibility',
+  tagline: 'Your Journey, Our Responsibility. Tourism unit of Window of Kashmir',
   signoff: 'Explore Kashmir. Create Memories. Travel With Us.',
   phones: contacts.map((c) => c.phone),
   email: 'contact@thejourneymakers.com', // TODO: real business Gmail (client Q6)
 }
 
 // TODO: replace the '#' placeholders with the real profile URLs (client Q8).
+// Technology partner shown in the footer.
+export const techPartner = {
+  name: 'HikzenLabs',
+  logo: '/hikzenlabs.png',
+  url: 'https://www.hikzenlabs.com',
+  whatsapp: '+91 78899 12123',
+}
+
 export const socials = [
   { id: 'instagram', label: 'Instagram', href: '#' },
   { id: 'facebook', label: 'Facebook', href: '#' },
@@ -26,10 +34,13 @@ export const socials = [
 // About page team. photo: put a file in public/team/ and set e.g. '/team/shafayat.jpg'.
 // TODO: confirm roles and the third member with the client.
 export const team = [
-  { name: 'Syed Shafayat', role: 'Role to be confirmed', phone: '+91 70420 97572', photo: '' },
-  { name: 'Ahil', role: 'Role to be confirmed', phone: '+91 88990 02449', photo: '' },
-  { name: 'Team member', role: 'Role to be confirmed', phone: '', photo: '' },
+  { name: 'Syed Shafayat', role: 'Founder & Managing Director (MD)', tag: 'Providing leadership and strategic direction to the organisation.', phone: '+91 9103203 359', photo: '/team/shafayat.webp' },
+  { name: 'Ahil Farooq', role: 'Co-Founder & Chief Executive Officer (CEO)', tag: 'Leading business operations and organisational growth.', phone: '+91 88990 02449', photo: '/team/ahil.jpeg' },
+  { name: 'Syed Moin Geelani', role: 'Chief Advisor | Board of Directors', tag: 'Advising on overall strategy, supervision and tourism development.', phone: '+91 70062 27685', photo: '' },
+  { name: 'Syed Zubair Kazmi', role: 'Advisor | Board of Directors', tag: '', phone: 'NA', photo: '' },
+  { name: 'Syed Aamir', role: 'Advisor | Board of Directors', tag: '', phone: 'NA', photo: '' },
 ]
+ 
 
 const digits = (phone) => phone.replace(/\D/g, '')
 export const waLink = (text, phone) => `https://wa.me/${digits(phone)}?text=${encodeURIComponent(text)}`
@@ -45,7 +56,7 @@ export const photos = {
   hero: img('1598091383021-15ddea10925d', 1800),
   wedding: img('1587271636175-90d58cdad458'),
   catering: img('1601482441062-b9f13131f33a'),
-  about: img('1566837497312-7be7830ae9b1'),
+  about: '/team-photo.webp', // TJM team with their welcome banner
 }
 
 export const packages = [
@@ -124,10 +135,29 @@ export const destinations = [
     duration: 'Half day', photo: img('1614591276564-7b3e69347a48'),
   },
   {
-    slug: 'uri', name: 'Uri', line: 'The “Window of Kashmir”', offbeat: true,
-    intro: 'The Jhelum valley road west of Baramulla, with river gorges and terraced villages.',
-    activities: ['Jhelum valley drive', 'Local villages', 'Heritage sites', 'Photography'],
-    duration: '1–2 days', photo: img('1624385196845-d87498de931f'),
+    slug: 'uri', name: 'Uri', line: 'The Window of Kashmir. Where nature, heritage and hospitality meet.', offbeat: true,
+    intro: 'Uri, nestled in the picturesque Baramulla district of Jammu & Kashmir, is a region blessed with breathtaking mountain landscapes, flowing rivers, lush green valleys and a rich cultural heritage. Often celebrated as the “Window of Kashmir,” Uri holds a distinctive place in the region’s geographical, historical and cultural identity.',
+    activities: ['Noorkhah Waterfall', 'Limber Wildlife Sanctuary', 'Lachipora Wildlife Sanctuary', 'Historic landmarks', 'Traditional villages', 'Jhelum valley drive'],
+    duration: '1–2 days', photo: '/gallery/uri/jhelum-valley.jpeg',
+    // Long-form story shown on the Uri page, one paragraph per item.
+    story: {
+      title: 'Uri: the Window of Kashmir',
+      paras: [
+        'From the pristine beauty of Noorkhah Waterfall and the wilderness of Limber and Lachipora Wildlife Sanctuaries to its historic landmarks, traditional villages and warm hospitality, Uri offers an experience that goes far beyond conventional tourism. It is a destination waiting to be discovered, experienced and celebrated.',
+      ],
+      sub: 'Window of Kashmir (WoK)',
+      subParas: [
+        'Window of Kashmir (WoK) is a community-based digital platform originating from Uri, founded with the vision of showcasing the region’s untapped potential and bringing its stories to the forefront. Through digital storytelling, tourism promotion, photography, filmmaking and local documentation, WoK works to highlight Uri’s natural attractions, historical landmarks, cultural traditions, local businesses and emerging talent. The platform serves as a bridge between Uri and the wider world, creating visibility for a region whose beauty, heritage and stories deserve greater recognition.',
+        'Beyond digital promotion, Window of Kashmir aspires to make tourism a meaningful source of opportunity for local communities. By promoting unexplored destinations, encouraging local entrepreneurship, connecting travellers with local service providers, highlighting homestays and tourism initiatives, and empowering young people to participate in the tourism ecosystem, WoK seeks to contribute to sustainable regional development. Its larger vision is to position Uri as a recognised tourism destination while preserving its cultural identity, protecting its natural environment and creating opportunities for the generations to come.',
+      ],
+    },
+    gallery: [
+      { src: '/gallery/uri/jhelum-valley.jpeg', alt: 'The Jhelum river winding through the Uri valley' },
+      { src: '/gallery/uri/waterfall.webp', alt: 'A tall waterfall falling down a rock face in Uri' },
+      { src: '/gallery/uri/meadow.jpeg', alt: 'A green meadow below pine-covered hills in Uri' },
+      { src: '/gallery/uri/sunset-river.webp', alt: 'Sunset over a mountain river in Uri' },
+      { src: '/gallery/uri/window-of-kashmir.webp', alt: 'Two trekkers holding a Window of Kashmir banner on a flowering hillside' },
+    ],
   },
   {
     slug: 'gurez', name: 'Gurez Valley', line: 'Log houses beneath Habba Khatoon peak', offbeat: true,

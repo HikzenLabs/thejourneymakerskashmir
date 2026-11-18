@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { BrowserRouter, Routes, Route, Link, NavLink, useLocation } from 'react-router-dom'
 import { site } from './data'
 import ContactChooser, { WA, Call } from './Contact'
-import { ContactList, Socials } from './components'
+import { ContactList, Socials, TechPartner } from './components'
 import Home from './pages/Home'
 import { Packages, Destinations, Destination, Hidden, Events, About, Contact, Privacy, NotFound, PlanTrip, PlanEvent } from './pages/Inner'
 import './styles/shell.css'
@@ -116,6 +116,10 @@ function Footer() {
           <p className="foot-note">Srinagar, Kashmir</p>
           <Socials className="light" />
         </div>
+      </div>
+
+      <div className="wrap">
+        <TechPartner dark />
       </div>
 
       <div className="wrap foot-bottom">

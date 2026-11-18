@@ -231,7 +231,8 @@
 }
 .member:nth-child(2) .member-photo { background: linear-gradient(135deg, var(--crocus-800), var(--crocus-700)); }
 .member:nth-child(3) .member-photo { background: linear-gradient(135deg, var(--rust-700), var(--rust-600)); }
-.member-photo img { width: 100%; height: 100%; object-fit: cover; }
+.member-photo { position: relative; }
+.member-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 15%; }
 .member-photo span {
   display: grid; place-items: center; width: 112px; height: 112px; border-radius: 50%;
   border: 2px solid rgba(255, 255, 255, 0.35); color: var(--saffron-400); font: 600 2.6rem/1 var(--head);
@@ -248,3 +249,33 @@
 .follow p { margin-top: var(--s-4); }
 
 @media (min-width: 720px) { .team { grid-template-columns: repeat(3, 1fr); } }
+
+/* ---------- About ---------- */
+.about-num { display: block; font: 700 1rem/1 var(--head); color: var(--saffron-500); margin-bottom: var(--s-2); letter-spacing: 0.04em; }
+.registered { display: inline-flex; align-items: center; gap: var(--s-2); margin-top: var(--s-3); padding: var(--s-2) var(--s-4); border-radius: var(--r-pill); background: var(--lake-100); color: var(--navy-800); font-weight: 600; font-size: var(--fs-sm); }
+.registered .icon { color: var(--wa); width: 18px; height: 18px; }
+.about-photo { margin: 0; }
+.about-photo .photo { aspect-ratio: 4 / 3; box-shadow: var(--shadow-lg); }
+.about-photo figcaption { margin-top: var(--s-3); font-size: var(--fs-sm); color: var(--muted); }
+.about-band { background: var(--sand-100); }
+.about-cols { display: grid; gap: var(--s-5); }
+.about-card { display: flex; flex-direction: column; gap: var(--s-4); padding: var(--s-6); background: #fff; border-radius: var(--r-lg); border: 1px solid var(--line); box-shadow: var(--shadow-sm); }
+.about-card h3 { margin: 0; }
+.about-card .checklist { flex: 1; }
+.about-card .quiet { align-self: flex-start; }
+.about-note { margin: var(--s-6) 0 0; max-width: 62ch; font-size: var(--fs-lg); color: var(--ink-2); }
+.about-close { text-align: center; }
+.about-close .lead { margin-inline: auto; }
+.about-close .actions { justify-content: center; }
+@media (min-width: 720px) { .about-cols { grid-template-columns: 1fr 1fr; } }
+
+/* ---------- Destination story (e.g. Uri) ---------- */
+.story-band { background: var(--sand-100); }
+.story { display: grid; gap: var(--s-6); }
+.story h3 { color: var(--rust-600); }
+.story p { max-width: 62ch; }
+@media (min-width: 960px) { .story { grid-template-columns: 1fr 1fr; gap: var(--s-8); } }
+
+/* Technology partner card at the foot of About and Contact */
+.partner-wrap { padding-top: 0; }
+.partner-wrap .partner { margin-bottom: 0; }
