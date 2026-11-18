@@ -9,7 +9,7 @@ export const contacts = [
 export const site = {
   name: 'The Journey Makers Kashmir',
   short: 'TJM Kashmir',
-  tagline: 'Your Journey, Our Responsibility. Tourism unit of Window of Kashmir',
+  tagline: 'Your Journey, Our Responsibility. An Tourism unit of Window of Kashmir',
   signoff: 'Explore Kashmir. Create Memories. Travel With Us.',
   phones: contacts.map((c) => c.phone),
   email: 'contact@thejourneymakers.com', // TODO: real business Gmail (client Q6)
