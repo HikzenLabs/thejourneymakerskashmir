@@ -13,7 +13,7 @@ const tripMsg = "Hi TJM Kashmir, I'd like to plan a Kashmir trip."
 function Brand({ light }) {
   return (
     <Link to="/" className={'brand' + (light ? ' light' : '')} aria-label={site.name + ', home'}>
-      <img src="/logo.png" alt="" width="52" height="52" />
+      <img src="/logo.webp" alt="" width="52" height="52" />
       <span>The Journey Makers<em>Kashmir</em></span>
     </Link>
   )
@@ -92,7 +92,7 @@ function Footer() {
 
       <div className="wrap foot">
         <div className="foot-brand">
-          <img src="/logo.png" alt={site.name} width="104" height="104" loading="lazy" />
+          <img src="/logo.webp" alt={site.name} width="104" height="104" loading="lazy" />
           <p className="signoff">{site.signoff}</p>
         </div>
         <div className="foot-col">

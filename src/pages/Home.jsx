@@ -112,7 +112,7 @@ export default function Home() {
       </section>
 
       <section className="wrap cta">
-        <img className="cta-mark" src="/logo.png" alt="" width="88" height="88" loading="lazy" />
+        <img className="cta-mark" src="/logo.webp" alt="" width="88" height="88" loading="lazy" />
         <h2>Not sure where to start?</h2>
         <p className="lead">Tell us your dates and who's travelling. We'll suggest a route and send you a quote.</p>
         <div className="actions">
