@@ -2,14 +2,14 @@
 
 // Every WhatsApp / Call button asks the visitor which of these to contact.
 export const contacts = [
-  { name: 'Syed Shafayat', phone: '+91 9103203 359' },
+  { name: 'Syed Shafayat', phone: '+91 91032 03359' },
   { name: 'Ahil', phone: '+91 88990 02449' },
 ]
 
 export const site = {
   name: 'The Journey Makers Kashmir',
   short: 'TJM Kashmir',
-  tagline: 'Your Journey, Our Responsibility. An Tourism unit of Window of Kashmir',
+  tagline: 'Your Journey, Our Responsibility. A Tourism unit of Window of Kashmir',
   signoff: 'Explore Kashmir. Create Memories. Travel With Us.',
   phones: contacts.map((c) => c.phone),
   email: 'contact@thejourneymakers.com', // TODO: real business Gmail (client Q6)
@@ -25,20 +25,21 @@ export const techPartner = {
 }
 
 export const socials = [
-  { id: 'instagram', label: 'Instagram', href: '#' },
+  { id: 'instagram', label: 'Instagram', href: 'https://www.instagram.com/thejourneymakerskashmir/' },
   { id: 'facebook', label: 'Facebook', href: '#' },
   { id: 'youtube', label: 'YouTube', href: '#' },
   { id: 'gmail', label: 'Gmail', href: `mailto:${site.email}` },
 ]
 
-// About page team. photo: put a file in public/team/ and set e.g. '/team/shafayat.jpg'.
+// About page team. photo: put a file in public/team/ and set e.g. '/team/name.jpg'.
+// photoPos (optional): which part of the photo stays in frame, e.g. 'center 48%'.
 // TODO: confirm roles and the third member with the client.
 export const team = [
-  { name: 'Syed Shafayat', role: 'Founder & Managing Director (MD)', tag: 'Providing leadership and strategic direction to the organisation.', phone: '+91 9103203 359', photo: '/team/shafayat.webp' },
+  { name: 'Syed Shafayat', role: 'Founder & Managing Director (MD)', tag: 'Providing leadership and strategic direction to the organisation.', phone: '+91 91032 03359', photo: '/team/shafayat-2.webp', photoPos: 'center 48%' },
   { name: 'Ahil Farooq', role: 'Co-Founder & Chief Executive Officer (CEO)', tag: 'Leading business operations and organisational growth.', phone: '+91 88990 02449', photo: '/team/ahil.jpeg' },
-  { name: 'Syed Moin Geelani', role: 'Chief Advisor | Board of Directors', tag: 'Advising on overall strategy, supervision and tourism development.', phone: '+91 70062 27685', photo: '' },
-  { name: 'Syed Zubair Kazmi', role: 'Advisor | Board of Directors', tag: '', phone: 'NA', photo: '' },
-  { name: 'Syed Aamir', role: 'Advisor | Board of Directors', tag: '', phone: 'NA', photo: '' },
+  { name: 'Syed Moin Geelani', role: 'Chief Advisor | Board of Directors', tag: 'Advising on overall strategy, supervision and tourism development.', phone: '', photo: '/team/moin.webp' },
+  { name: 'Syed Zubair Kazmi', role: 'Advisor | Board of Directors', tag: '', phone: 'NA', photo: '/team/zubair.webp' },
+  { name: 'Syed Aamir', role: 'Advisor | Board of Directors', tag: '', phone: 'NA', photo: '/team/aamir.webp' },
 ]
  
 

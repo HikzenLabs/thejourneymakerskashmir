@@ -321,13 +321,13 @@ export function About() {
               <div className="member-photo">
                 <span aria-hidden="true">{initials(m.name)}</span>
                 {/* Photo sits over the initials; if the file is missing it hides and the initials show. */}
-                {m.photo && <img src={m.photo} alt={m.name} loading="lazy" onError={(e) => { e.currentTarget.hidden = true }} />}
+                {m.photo && <img src={m.photo} alt={m.name} loading="lazy" style={m.photoPos && { objectPosition: m.photoPos }} onError={(e) => { e.currentTarget.hidden = true }} />}
               </div>
               <div className="member-body">
                 <h3>{m.name}</h3>
                 <p className="role">{m.role}</p>
                 <p className="">{m.tag}</p>
-                {m.phone ? (
+                {/\d/.test(m.phone) ? (
                   <>
                     <p className="num">{m.phone}</p>
                     <div className="member-actions">
@@ -336,7 +336,7 @@ export function About() {
                       <a className="btn ghost" href={telLink(m.phone)} onClick={() => track('call_click', 'team:' + m.name)}>Call</a>
                     </div>
                   </>
-                ) : <p className="num">Contact to be added</p>}
+                ) : null}
               </div>
             </article>
           ))}
